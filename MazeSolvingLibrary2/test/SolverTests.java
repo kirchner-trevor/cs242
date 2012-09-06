@@ -13,6 +13,14 @@ import cs242.kirchne5.mazesolvinglibrary.Solver;
 public class SolverTests {
 
 	@Test
+	public void calculateManhattanDistances() {
+		Maze maze = new Maze(2);
+		AStarSolver aStar = new AStarSolver();
+		assertEquals(true, 100.0 == aStar.calculateManhattanDistance(maze.getNode(0, 0), maze.getNode(0, 1)));
+		assertEquals(true, 200.0 == aStar.calculateManhattanDistance(maze.getNode(0, 0), maze.getNode(1, 1)));
+	}
+	
+	@Test
 	public void solveDefaultMazeUsingAStar() {
 		Maze maze = new Maze();
 		Solver aStar = new AStarSolver();
@@ -60,7 +68,7 @@ public class SolverTests {
 	}
 
 	@Test
-	public void solveSimpleMazeWillWallUsingAStar() {
+	public void solveSimpleMazeWithWallUsingAStar() {
 		Maze maze = new Maze(3);
 		maze.setNodeWalkable(maze.getNode(1,  1), false);
 		maze.setStart(0, 1);
@@ -88,5 +96,73 @@ public class SolverTests {
 		List<Node> nodeList = aStar.solve(maze);
 		
 		assertNull(nodeList);
+	}
+	
+	@Test
+	public void solveSimpleMazeWithLongWallUsingAStar() {
+		Maze maze = new Maze(3);
+		maze.setStart(0, 2);
+		maze.setEnd(2, 2);
+		maze.setNodeWalkable(1, 2, false);
+		maze.setNodeWalkable(1, 1, false);
+		
+		Solver aStar = new AStarSolver();
+		
+		List<Node> nodeList = aStar.solve(maze);
+		
+		assertEquals(5, nodeList.size());
+		assertEquals(maze.getEnd(), nodeList.get(0));
+		assertEquals(maze.getStart(), nodeList.get(nodeList.size() - 1));
+	}
+	
+	@Test
+	public void solveModerateMazeUsingAStar() {
+		Maze maze = new Maze(5);
+		maze.setStart(0, 4).setEnd(4, 0);
+		maze.setNodeWalkable(1, 1, false).setNodeWalkable(2, 1, false).setNodeWalkable(3, 1, false);
+		maze.setNodeWalkable(1, 3, false);
+		maze.setNodeWalkable(3, 3, false).setNodeWalkable(3, 4, false);
+		
+		Solver aStar = new AStarSolver();
+		
+		List<Node> nodeList = aStar.solve(maze);
+		
+		System.out.println(nodeList);
+		
+		assertEquals(7, nodeList.size());
+		assertEquals(maze.getEnd(), nodeList.get(0));
+		assertEquals(maze.getStart(), nodeList.get(nodeList.size() - 1));
+	}
+	
+	@Test
+	public void testCardinalDistanceAccumulation() {
+		Maze maze = new Maze(2);
+		maze.setEnd(0, 1);
+		Solver aStar = new AStarSolver();
+		List<Node> nodeList = aStar.solve(maze);
+		assertEquals(true, 100.0 == nodeList.get(0).getAccumulatedCost());
+	}
+	
+	@Test
+	public void testDiagonalDistanceAccumulation() {
+		Maze maze = new Maze(2);
+		Solver aStar = new AStarSolver();
+		List<Node> nodeList = aStar.solve(maze);
+		assertEquals(true, 141.0 == nodeList.get(0).getAccumulatedCost());
+	}
+	
+	@Test
+	public void testComplexDistanceAccumulation() {
+		Maze maze = new Maze(5);
+		maze.setStart(0, 4).setEnd(4, 0);
+		maze.setNodeWalkable(1, 1, false).setNodeWalkable(2, 1, false).setNodeWalkable(3, 1, false);
+		maze.setNodeWalkable(1, 3, false);
+		maze.setNodeWalkable(3, 3, false).setNodeWalkable(3, 4, false);
+		
+		Solver aStar = new AStarSolver();
+		
+		List<Node> nodeList = aStar.solve(maze);
+		
+		assertEquals(true, 682.0 == nodeList.get(0).getAccumulatedCost());
 	}
 }

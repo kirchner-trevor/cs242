@@ -46,7 +46,7 @@ public class AStarSolver implements Solver {
 						}
 					} else {
 						maze.setNodeParent(n, current);//Sets the parent in the base structure
-						double estimated = (Math.abs(end.getX() - n.getX()) + Math.abs(end.getY() - n.getY())) * CARDINAL;
+						double estimated = calculateManhattanDistance(n, end);
 						maze.setNodeCost(n, accumulated, estimated);//Sets the cost in the base structure
 						
 						if(open.contains(n)) {
@@ -74,6 +74,10 @@ public class AStarSolver implements Solver {
 		} else {
 			return null;
 		}
+	}
+
+	public double calculateManhattanDistance(Node n, Node end) {
+		return (Math.abs(end.getX() - n.getX()) + Math.abs(end.getY() - n.getY())) * CARDINAL;
 	}
 
 }

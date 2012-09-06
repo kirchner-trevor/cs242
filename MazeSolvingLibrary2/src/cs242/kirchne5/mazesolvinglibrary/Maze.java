@@ -70,6 +70,15 @@ public class Maze {
 		return null;
 	}
 	
+	public Maze setNodeWalkable(int x, int y, boolean walkable) {
+		if(bounds.contains(x, y)) {
+			layout[x][y].setWalkable(walkable);
+		}  else {
+			System.err.println(ERROR_OUT_OF_MAZE);
+		}
+		return this;
+	}
+	
 	public Maze setNodeWalkable(Node target, boolean walkable) {
 		Point location = target.getLocation();
 		int x = location.x;

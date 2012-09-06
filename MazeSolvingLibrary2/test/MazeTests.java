@@ -85,5 +85,5 @@ public class MazeTests {
 		assertEquals(true, newMaze.isEndNode(newMaze.getNode(0, 1)));
 		assertEquals(false, newMaze.isEndNode(newMaze.getNode(0, 0)));
 	}
-
+	
 }

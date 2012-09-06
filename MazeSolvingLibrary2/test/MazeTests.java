@@ -14,6 +14,9 @@ public class MazeTests {
 	private Maze maze = new Maze(10);//Maze with nodes from (0, 0) -> (9, 9)
 	
 	@Test
+	/**
+	 * Tries to make a maze of negative size.
+	 */
 	public void negativeSizedMaze() {
 		try {
 			new Maze(-1);
@@ -23,6 +26,9 @@ public class MazeTests {
 	}
 	
 	@Test
+	/**
+	 * Tests to see if getAdjacent works on a regular node.
+	 */
 	public void getNormalAdjacentNodes() {
 		List<Node> nodeList = maze.getAdjacent(maze.getNode(1, 1));
 		assertEquals(8, nodeList.size());
@@ -38,6 +44,9 @@ public class MazeTests {
 	}
 	
 	@Test
+	/**
+	 * Tests to see if getAdjacent works on corner cases.
+	 */
 	public void getCornerAdjacentNodes() {
 		List<Node> nodeList = maze.getAdjacent(maze.getNode(0, 0));
 		assertEquals(3, nodeList.size());
@@ -53,6 +62,9 @@ public class MazeTests {
 	}
 	
 	@Test
+	/**
+	 * Checks to see if the default maze places the start node correctly.
+	 */
 	public void defaultStartNode() {
 		Maze newMaze = new Maze(10);
 		assertEquals(true, newMaze.isStartNode(newMaze.getNode(0, 0)));
@@ -61,6 +73,9 @@ public class MazeTests {
 	}
 	
 	@Test
+	/**
+	 * Checks to see if the default maze places the end node correctly.
+	 */
 	public void defaultEndNode() {
 		Maze newMaze = new Maze(10);
 		assertEquals(true, newMaze.isEndNode(newMaze.getNode(9, 9)));

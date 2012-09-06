@@ -12,6 +12,12 @@ public class Node implements Comparable<Node> {
 	private double totalCost = 0;
 	private Node parent = null;
 	
+	/**
+	 * Creates a new node that acts as the basis of all mazes.
+	 * @param x the x coordinate of the node
+	 * @param y the y coordinate of the node
+	 * @param isWalkable whether or not you can pass through this node
+	 */
 	public Node(int x, int y, boolean isWalkable) {
 		location = new Point(x, y);
 		walkable = isWalkable;

@@ -12,6 +12,9 @@ public class AStarSolver implements Solver {
 	private static final int CARDINAL = 100;
 	private static final int DIAGONAL = 141;
 	
+	/**
+	 * Solves a given maze using the A* algorithm.
+	 */
 	@Override
 	public List<Node> solve(Maze maze) {
 		Node start = maze.getStart();

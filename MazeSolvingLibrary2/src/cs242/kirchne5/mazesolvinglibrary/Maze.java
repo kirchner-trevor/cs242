@@ -14,6 +14,9 @@ public class Maze {
 	private Point start;
 	private Point end;
 	
+	/**
+	 * Creates a new default maze of size 1, with start and end locations at 0,0.
+	 */
 	public Maze() {
 		layout = new Node[1][1];
 		bounds = new Rectangle(0, 0, 1, 1);
@@ -22,6 +25,11 @@ public class Maze {
 		end = new Point(0, 0);
 	}
 	
+	/**
+	 * Creates a square maze of with height and width "size". The start is located at (0,0) and the end is located at (size - 1, size -1).
+	 * @param size the width and height of the maze
+	 * @throws InvalidParameterException
+	 */
 	public Maze(int size) throws InvalidParameterException {
 		if(size < 1) {
 			throw new InvalidParameterException("Mazes must be of at least size 1.");
@@ -116,6 +124,11 @@ public class Maze {
 		return this;
 	}
 	
+	/**
+	 * Returns all nodes that are adjacent to the given node as a list of nodes.
+	 * @param n the target node
+	 * @return a list of nodes
+	 */
 	public List<Node> getAdjacent(Node n) {
 		Point location = n.getLocation();
 		int x = location.x;

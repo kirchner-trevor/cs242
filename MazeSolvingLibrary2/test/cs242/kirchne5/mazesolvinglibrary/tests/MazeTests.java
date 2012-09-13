@@ -1,3 +1,4 @@
+package cs242.kirchne5.mazesolvinglibrary.tests;
 import static org.junit.Assert.*;
 
 import java.security.InvalidParameterException;
@@ -23,6 +24,27 @@ public class MazeTests {
 		} catch (InvalidParameterException e) {
 			assert(true);
 		}
+	}
+	
+	@Test
+	public void testSquareMazeFromArray() {
+		boolean[][] walkable = {{true	,true	,true	,true	,true},
+								{true	,false	,false	,false	,true},
+								{true	,true	,true	,true	,true},
+								{true	,false	,true	,false	,true},
+								{true	,true	,true	,false	,true}};
+		new Maze(walkable);
+	}
+	
+	@Test
+	public void testOblongMazeFromArray() {
+		final boolean T = true, F = false;
+		boolean[][] walkable = {{T,T,T},
+								{T,F,T},
+								{T,T,T},
+								{T,F,T},
+								{T,T,T}};
+		new Maze(walkable);
 	}
 	
 	@Test

@@ -1,3 +1,4 @@
+package cs242.kirchne5.mazesolvinglibrary.tests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -23,7 +24,7 @@ public class NodeTests {
 	 * Tests to make sure a nodes walk-ability can be changed.
 	 */
 	public void isPositionNotTraversable() {
-		maze.setNodeWalkable(maze.getNode(1, 1), false);
+		maze.getNode(1, 1).setWalkable(false);
 		assertEquals(false, maze.getNode(1, 1).isWalkable());
 	}
 	
